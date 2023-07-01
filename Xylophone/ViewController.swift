@@ -19,11 +19,17 @@ class ViewController: UIViewController {
 
 
     @IBAction func buttonPressed(_ sender: UIButton) {
+        playSound(button1: (sender.titleLabel?.text)!)
+        sender.alpha = 0.5
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            sender.alpha = 1
+        }
+       
         
-        playSound(button1: (sender.titleLabel?.text)!);
     }
     
     func playSound(button1: String){
+        
         let url = Bundle.main.url(forResource: button1, withExtension: "wav")
         player = try! AVAudioPlayer(contentsOf: url!)
         player?.play()
